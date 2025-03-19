@@ -10,6 +10,7 @@ from ._lobster_fold import FoldseekTransform, LobsterPLMFold
 from ._mgm import LobsterMGM
 from ._mlm import LobsterPMLM
 from ._mlm_configuration import PMLM_CONFIG_ARGS, PMLMConfig
+from ._entropy_mlm_configuration import ENTROPY_PMLM_CONFIG_ARGS, EntropyPMLMConfig
 from ._mlp import LobsterMLP
 from ._peft_lightning_module import LobsterPEFT
 from ._ppi_clf import PPIClassifier
