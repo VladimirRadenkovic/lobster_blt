@@ -9,13 +9,12 @@ import torch
 from transformers import AutoModelForMaskedLM, AutoTokenizer, EsmForMaskedLM, get_scheduler
 from transformers.configuration_utils import PretrainedConfig
 
-from lobster.tokenization import PmlmTokenizer, PmlmTokenizerTransform
 from lobster.transforms import AutoTokenizerTransform, Transform
 
 from lobster.tokenization import AminoAcidTokenizerFast
 from lobster.transforms import TokenizerTransform
 
-from ._mlm_configuration import PMLM_CONFIG_ARGS, PMLMConfig
+from ._entropy_mlm_configuration import ENTROPY_PMLM_CONFIG_ARGS, EntropyPMLMConfig
 from .lm_base import LMBaseForMaskedLM
 
 
