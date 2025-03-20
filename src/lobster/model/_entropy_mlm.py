@@ -117,6 +117,14 @@ class LobsterEntropyPMLM(pl.LightningModule):
                         "Synthyra/ESMplusplus_small", trust_remote_code=True, torch_dtype=torch.bfloat16
                     )
                 self._use_esmc = True
+            else:
+                self.tokenizer = AminoAcidTokenizerFast()
+                self._transform_fn = TokenizerTransform(
+                    AminoAcidTokenizerFast(),
+                    padding="max_length",
+                    truncation=True,
+                    max_length=self._max_length
+                )
             
         else:
                 self.tokenizer = AminoAcidTokenizerFast()
