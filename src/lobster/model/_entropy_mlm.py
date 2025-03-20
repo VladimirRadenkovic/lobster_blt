@@ -31,7 +31,6 @@ class LobsterEntropyPMLM(pl.LightningModule):
         freeze: bool = False,
         mask_percentage: float = 0.25,
         initial_mask_percentage: Optional[float] = None,
-        transform_fn: Union[Callable, Transform, None] = None,
         config: Union[PretrainedConfig, None] = None,
         ckpt_path: str = None,
         max_length: int = 512,
