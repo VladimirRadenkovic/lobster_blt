@@ -9,10 +9,8 @@ import torch
 from transformers import AutoModelForMaskedLM, AutoTokenizer, EsmForMaskedLM, get_scheduler
 from transformers.configuration_utils import PretrainedConfig
 
-from lobster.transforms import AutoTokenizerTransform, Transform
-
+from lobster.transforms import AutoTokenizerTransform, Transform, TokenizerTransform
 from lobster.tokenization import AminoAcidTokenizerFast
-from lobster.transforms import TokenizerTransform
 
 from ._entropy_mlm_configuration import ENTROPY_PMLM_CONFIG_ARGS, EntropyPMLMConfig
 from .lm_base import LMBaseForMaskedLM
@@ -94,7 +92,7 @@ class LobsterEntropyPMLM(pl.LightningModule):
         self.scheduler_kwargs = scheduler_kwargs or {}
         model_kwargs = model_kwargs or {}
 
-        load_pretrained = config is None and model_name not in PMLM_CONFIG_ARGS
+        load_pretrained = config is None and model_name not in ENTROPY_PMLM_CONFIG_ARGS
 
         # setup tokenizer
         if load_pretrained:
@@ -145,9 +143,9 @@ class LobsterEntropyPMLM(pl.LightningModule):
                 # use named config
                 # FIXME this assert fails for some pretrained checkpoints
                 #                assert config is None, "Cannot supply both `config` and `model_name`"
-                assert model_name in PMLM_CONFIG_ARGS
-                config_args = PMLM_CONFIG_ARGS[model_name]
-                config = PMLMConfig(
+                assert model_name in ENTROPY_PMLM_CONFIG_ARGS
+                config_args = ENTROPY_PMLM_CONFIG_ARGS[model_name]
+                config = EntropyPMLMConfig(
                     **config_args,
                     attention_probs_dropout_prob=0.0,
                     mask_token_id=self.tokenizer.mask_token_id,
