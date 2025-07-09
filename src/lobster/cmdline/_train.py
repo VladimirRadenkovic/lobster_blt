@@ -8,10 +8,10 @@ from omegaconf import DictConfig, OmegaConf
 from lobster.cmdline._utils import instantiate_callbacks
 
 
-@hydra.main(version_base=None, config_path="../hydra_config", config_name="train")
+@hydra.main(version_base=None, config_path="../hydra_config", config_name="train_rlt_mlm")
 def train(cfg: DictConfig) -> tuple[pl.LightningModule, pl.LightningDataModule, list[pl.Callback]]:
-    log_cfg = OmegaConf.to_container(cfg, throw_on_missing=True, resolve=True)
-
+    #log_cfg = OmegaConf.to_container(cfg, throw_on_missing=True, resolve=True)
+    log_cfg = OmegaConf.to_container(cfg, throw_on_missing=True)
     wandb.require("service")
     if rank_zero_only.rank == 0:
         print(OmegaConf.to_yaml(log_cfg))
@@ -21,10 +21,13 @@ def train(cfg: DictConfig) -> tuple[pl.LightningModule, pl.LightningDataModule, 
     datamodule = hydra.utils.instantiate(cfg.data)
     datamodule.prepare_data()
     datamodule.setup(stage="fit")
+
     model = hydra.utils.instantiate(cfg.model, _recursive_=False)
 
     if cfg.compile:
         model.compile()
+    
+    print('Before logger')
 
     if not cfg.dryrun:
         logger = hydra.utils.instantiate(cfg.logger)

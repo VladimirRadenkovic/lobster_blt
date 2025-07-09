@@ -15,5 +15,8 @@ from ._peft_lightning_module import LobsterPEFT
 from ._ppi_clf import PPIClassifier
 from ._seq2seq import PrescientPT5
 from .lm_base import LMBaseContactPredictionHead, LMBaseForMaskedLM
-
+from ._entropy_mlm import LobsterEntropyPMLM
+from ._entropy_clm import LobsterEntropyPCLM
+from ._rlt_mlm import ResidueLatentTransformerMLM
+from ._rlt_clm import ResidueLatentTransformerCLM
 # from ._utils import model_typer

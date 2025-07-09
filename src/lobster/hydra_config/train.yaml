@@ -3,7 +3,7 @@ defaults:
   - data: fasta.yaml
   - model: mlm.yaml
   - callbacks: default.yaml
-  - logger: wandb.yaml
+  - logger: csv.yaml
   - trainer: default.yaml
   - setup: default.yaml
   - paths: default.yaml

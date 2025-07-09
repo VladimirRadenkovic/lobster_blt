@@ -6,10 +6,10 @@ PCLM_CONFIG_ARGS = {
         "hidden_size": 32,
     },
     "CLM_bottleneck": {  # 2.4M
-        "num_hidden_layers": 24,
+        "num_hidden_layers": 6,
         "num_attention_heads": 8,
-        "intermediate_size": 2048,
-        "hidden_size": 16,
+        "intermediate_size": 512,
+        "hidden_size": 128,
     },
     "CLM_11M": {  # 10.6M
         "num_hidden_layers": 6,

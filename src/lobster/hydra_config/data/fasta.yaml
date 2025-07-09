@@ -3,7 +3,7 @@ defaults:
 
 _target_: lobster.data.FastaLightningDataModule
 
-path_to_fasta: ???
+path_to_fasta: /home/vr375/code/lobster/test_data/query.fasta
 batch_size: 64
 num_workers: 1
 max_length: ${model.max_length}

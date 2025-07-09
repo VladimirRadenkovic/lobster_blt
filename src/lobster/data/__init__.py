@@ -17,8 +17,8 @@ from ._minhasher import LobsterMinHasher
 from ._mmseqs import MMSeqsRunner
 from ._structure_datamodule import PDBDataModule
 from ._ume_datamodule import UmeLightningDataModule
+from ._amplify_datamodule import AmplifyLightningDataModule
 from ._utils import load_pickle
-
 __all__ = [
     "CalmLightningDataModule",
     "ChEMBLLightningDataModule",
@@ -38,4 +38,5 @@ __all__ = [
     "PDBDataModule",
     "load_pickle",
     "UmeLightningDataModule",
+    "AmplifyLightningDataModule",
 ]

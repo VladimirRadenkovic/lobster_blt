@@ -81,7 +81,6 @@ class HuggingFaceIterableDataset(IterableDataset):
         self.kwargs = kwargs
 
         self.keys = list(keys) if keys is not None else None
-
         self.dataset: HFIterableDataset | HFDataset = load_dataset(
             self.dataset_name,
             split=self.split,
@@ -89,6 +88,14 @@ class HuggingFaceIterableDataset(IterableDataset):
             cache_dir=self.root,
             **self.kwargs,
         )
+        #self.dataset = self.dataset.map(self.process_batch, batched=True, batch_size=64)
+
+    def process_batch(self, batch):
+        sequences = batch[self.keys[0]]
+        processed_sequences = [self._process_sample(seq) for seq in sequences]
+        if self.transform is not None:
+            processed_samples = self.transform(processed_sequences)
+        return processed_samples
 
     def _passes_type_check(self, sample: tuple[Any]) -> bool:
         """Implement a type check for the sample. Used for filtering out unwanted samples,
@@ -124,7 +131,7 @@ class HuggingFaceIterableDataset(IterableDataset):
                 num_workers = 1
 
             dataset = dataset.to_iterable_dataset(num_shards=num_workers)
-
+        #dataset = dataset.map(self.process_batch, batched=True, batch_size=64)
         # Shuffle the dataset
         if self.shuffle:
             dataset = dataset.shuffle(buffer_size=self.shuffle_buffer_size, seed=self.seed)
@@ -146,5 +153,5 @@ class HuggingFaceIterableDataset(IterableDataset):
 
             if self.transform is not None:
                 sample = self.transform(sample)
-
             yield sample
+     

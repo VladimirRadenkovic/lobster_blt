@@ -114,7 +114,7 @@ class LMBaseEmbeddings(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.word_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=config.pad_token_id)
-
+        
         if config.emb_layer_norm_before:
             self.layer_norm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
         else:

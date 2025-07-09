@@ -1,0 +1,63 @@
+defaults:
+  - _self_
+
+model:
+  dim: 512
+  n_layers: 8
+  head_dim: null
+  n_heads: 8
+  n_kv_heads: null
+  ffn_dim_multiplier: 1.0
+  multiple_of: 256
+  norm_eps: 1e-05
+  rope_theta: 10000.0
+  rope_use_fp32_in_outer_product: true
+  init_base_std: null
+  max_seq_len: 2048
+  attn_impl: "sdpa"
+  weight_tying: false
+  dim_token: null
+  dim_global: 2048
+  dim_local_encoder: 1024
+  dim_local_decoder: 1024
+  n_layers_global: 25
+  n_layers_local_decoder: 9
+  n_layers_local_encoder: 1
+  patch_size: 4
+  patching_mode: "static"
+  patching_threshold: 0.0
+  patching_threshold_add: 0.0
+  monotonicity: false
+  max_patch_length: 24
+  cross_attn_encoder: true
+  cross_attn_decoder: true
+  cross_attn_k: 2
+  cross_attn_nheads: 16
+  cross_attn_window_encoder: null
+  cross_attn_window_decoder: null
+  cross_attn_use_flex_attention: true
+  dim_token_emb: null
+  dim_patch_emb: null
+  n_heads_global: 16
+  n_heads_local_encoder: 16
+  n_heads_local_decoder: 16
+  n_kv_heads_global: 16
+  local_attetnion_window_encoder: 512
+  patch_in_forward: false
+  downsampling_by_pooling: "max"
+  dropout: 0.0
+  use_rope: true
+  sliding_window: 512
+  init_base_std: 0.02
+  init_std_factor: 1.0
+  weight_tying: true
+  hidden_size: 512
+
+data:
+  tokenizer_max_length: 2048
+  root: "/rds/user/vr375/hpc-work/lobster/data"
+  seed: 42
+  batch_size: 4
+  num_workers: 0
+  pin_memory: true
+  shuffle_buffer_size: 10000 

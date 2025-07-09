@@ -21,6 +21,8 @@ class TestFastaLightningDatamodule:
         assert len(dm._train_dataset) == 15
         assert len(dm._val_dataset) == 2
         assert len(dm._test_dataset) == 1
+        for batch in dm.train_dataloader():
+            print(batch["input_ids"].shape)
 
         batch = next(iter(dm.train_dataloader()))
 

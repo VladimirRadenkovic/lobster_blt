@@ -1,0 +1,92 @@
+_target_: lobster.model.lm_base._latent_transformer.ByteLatentTransformer
+
+encoder:
+  model_type: "mlm"
+  dim: 1024
+  dim_patch_emb: 1024
+  dropout: 0.0
+  vocab_size: 34
+  n_layers: 1
+  n_heads: 16
+  head_dim: null
+  max_seqlen: 2048
+  patch_size: 4
+  sliding_window: 128
+  rope_theta: 10000.0
+  rope_use_fp32_in_outer_product: True
+  init_base_std: null
+  attn_impl: "sdpa"
+  attn_bias_type: "sliding_window"
+  multiple_of: 256
+  ffn_dim_multiplier: 1.0
+  cross_attn: True
+  cross_attn_all_layers: False
+  cross_attn_k: 2
+  cross_attn_nheads: 16
+  n_kv_heads: null
+  cross_attn_init_by_pooling: True
+  pad_token_id: 1
+  norm_eps: 1e-5
+  downsampling_by_pooling: "max"
+  encoder_hash_byte_group_size: null
+
+decoder:
+  model_type: "mlm"
+  dim: 1024
+  dim_patch_emb: 2048
+  dropout: 0.0
+  vocab_size: 34
+  n_layers: 9
+  n_heads: 16
+  head_dim: null
+  max_seqlen: 2048
+  patch_size: 4
+  sliding_window: 128
+  rope_theta: 10000.0
+  rope_use_fp32_in_outer_product: True
+  init_base_std: null
+  attn_impl: "sdpa"
+  attn_bias_type: "sliding_window"
+  multiple_of: 256
+  ffn_dim_multiplier: 1.0
+  cross_attn: True
+  cross_attn_all_layers: True
+  cross_attn_k: 2
+  cross_attn_nheads: 16
+  n_kv_heads: null
+  pad_token_id: 1
+  norm_eps: 1e-5
+  
+global_transformer:
+  model_type: "mlm"
+  dim: 2048
+  n_layers: 25
+  n_heads: 16
+  head_dim: null
+  n_kv_heads: null
+  dropout: 0.0
+  init_base_std: null
+  attn_impl: "sdpa"
+  attn_bias_type: null
+  max_seqlen: 2048
+  rope_theta: 10000.0
+  rope_use_fp32_in_outer_product: True
+  multiple_of: 256
+  ffn_dim_multiplier: 1.0
+  norm_eps: 1e-5
+
+model_type: "mlm"
+patch_in_forward: true
+patch_size: 4
+patching_mode: "static"
+downsampling_by_pooling: "max"
+patching_threshold: 0.0
+patching_threshold_add: null
+monotonicity: False
+max_patch_length: null
+weight_tying: False
+init_base_std: null
+max_seqlen: 2048
+cross_attn_k: 2
+cross_attn_use_flex_attention: True
+

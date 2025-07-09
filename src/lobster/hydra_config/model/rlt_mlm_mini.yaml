@@ -1,0 +1,113 @@
+
+_target_: lobster.model.ResidueLatentTransformerMLM
+model_name: "rlt_mlm_mini"
+model_type: "mlm"
+ckpt_path: null
+config:
+  encoder:
+    model_type: "mlm"
+    dim: 128
+    dim_patch_emb: 128
+    dropout: 0.1
+    vocab_size: 27
+    n_layers: 2
+    n_heads: 8
+    head_dim: null
+    max_seqlen: 2048
+    patch_size: 4
+    sliding_window: 96
+    rope_theta: 10000.0
+    rope_use_fp32_in_outer_product: True
+    init_base_std: null
+    attn_impl: "sdpa"
+    attn_bias_type: "sliding_window"
+    multiple_of: 128
+    ffn_dim_multiplier: 1.0
+    cross_attn: True
+    cross_attn_all_layers: False
+    cross_attn_k: 2
+    cross_attn_nheads: 8
+    n_kv_heads: null
+    cross_attn_init_by_pooling: True
+    pad_token_id: 1
+    norm_eps: 1e-5
+    downsampling_by_pooling: "max"
+    encoder_hash_byte_group_size: null
+
+  decoder:
+    model_type: "mlm"
+    dim: 128
+    dim_patch_emb: 408
+    dropout: 0.1
+    vocab_size: 27
+    n_layers: 3
+    n_heads: 8
+    head_dim: null
+    max_seqlen: 2048
+    patch_size: 4
+    sliding_window: 96
+    rope_theta: 10000.0
+    rope_use_fp32_in_outer_product: True
+    init_base_std: null
+    attn_impl: "sdpa"
+    attn_bias_type: "sliding_window"
+    multiple_of: 128
+    ffn_dim_multiplier: 1.0
+    cross_attn: True
+    cross_attn_all_layers: True
+    cross_attn_k: 2
+    cross_attn_nheads: 8
+    n_kv_heads: null
+    pad_token_id: 1
+    norm_eps: 1e-5
+    
+  global_transformer:
+    model_type: "mlm"
+    dim: 408
+    dim_token_emb: 256
+    n_layers: 10
+    n_heads: 12
+    head_dim: null
+    n_kv_heads: null
+    dropout: 0.1
+    init_base_std: null
+    attn_impl: "sdpa"
+    attn_bias_type: null
+    max_seqlen: 2048
+    rope_theta: 10000.0
+    rope_use_fp32_in_outer_product: True
+    multiple_of: 240
+    ffn_dim_multiplier: 1.0
+    norm_eps: 1e-5
+
+  model_type: "mlm"
+  patch_in_forward: true
+  patch_size: 4
+  patching_mode: "static"
+  downsampling_by_pooling: "max"
+  patching_threshold: 0.0
+  patching_threshold_add: null
+  monotonicity: False
+  max_patch_length: null
+  weight_tying: False
+  init_base_std: null
+  max_seqlen: 2048
+  max_num_patches: 512
+  cross_attn_k: 2
+  cross_attn_use_flex_attention: True
+  vocab_size: 27
+lr: 1e-3
+beta1: 0.9
+beta2: 0.98
+eps: 1e-12
+num_warmup_steps: 1000
+num_training_steps: ${trainer.max_steps}
+
+
+scheduler: "cosine_with_min_lr"
+# Scheduler-specific configuration parameters
+scheduler_kwargs:
+  min_lr: 1e-7
+
+
+

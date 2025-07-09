@@ -37,7 +37,7 @@ def esmc():
 
 class TestLobsterPMLM:
     def test_sequences_to_latents(self, model):
-        inputs = ["ACDAC"]
+        inputs = ["ACDAC","ACDAC","ACDAC","ACDAC"]
         outputs = model.sequences_to_latents(inputs)
 
         assert len(outputs) == 4

@@ -109,8 +109,8 @@ class AMPLIFYIterableDataset(HuggingFaceIterableDataset):
             shuffle_buffer_size=shuffle_buffer_size,
         )
 
-    def _process_sample(self, sample: tuple[str]) -> str:
-        return sample[0].replace("|", ".")
+    #def _process_sample(self, sample) -> str:
+     #   return sample[0].replace("|", ".")
 
     def _passes_type_check(self, sample: tuple[str]) -> bool:
         return all(isinstance(s, str) for s in sample)
